@@ -6,7 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -16,10 +18,10 @@ import javafx.scene.text.Text;
 
 public class FormFX extends Parent {
 
-	private GridPane grid = new GridPane();
-	private Label[] formLabels = new Label[100];
-	private Node[] formElements = new Node[100];
-	private int nbElem = 0;
+	private GridPane grid         = new GridPane();
+	private Label[]  formLabels   = new Label[100];
+	private Node[]   formElements = new Node[100];
+	private int      nbElem = 0;
 
 	/**
 	 * Constructeur FormFX
@@ -48,6 +50,21 @@ public class FormFX extends Parent {
 	}//FormFX()
 
 
+	/**
+	 * add() permet d'ajouter un element à la Grid du formulaire
+	 * @param child
+	 * @param columnIndex
+	 * @param rowIndex
+	 * @param colspan
+	 * @param rowspan
+	 */
+	public void add(Node child, int columnIndex, int rowIndex) {
+		grid.add(child, columnIndex, rowIndex);
+	}//add()
+	public void add(Node child, int columnIndex, int rowIndex, int colspan, int rowspan) {
+		grid.add(child, columnIndex, rowIndex, colspan, rowspan);
+	}//add()
+	
 
 	/**
 	 * Ajout d'un ou plusieurs champs en donnant le nom
@@ -74,7 +91,32 @@ public class FormFX extends Parent {
 		return new TextField();
 	}//getTextField()
 
+	
 
+	/**
+	 * Possibilité d'ajout d'un PasswordField
+	 * @param name
+	 */
+	public void addPasswordField(String name) {
+		++nbElem;
+		Label label = new Label(name);
+		formLabels[nbElem] = label;
+		grid.add(label, 0, nbElem);
+
+		PasswordField passwordField = new PasswordField();
+		formElements[nbElem] = passwordField;
+		grid.add(passwordField, 1, nbElem);
+	}//addPasswordField()
+	
+	public PasswordField getPasswordField(String name) {
+		for(int i = 0; i <= nbElem; i++)
+			if (formLabels[i].getText().equals(name)) 
+				return (PasswordField) formElements[i];
+		return new PasswordField();
+	}//getTextField()
+	
+	
+	
 	/**
 	 * Possibilité d'ajout d'un TextArea avec son Label
 	 * @param name
@@ -97,6 +139,8 @@ public class FormFX extends Parent {
 		return new TextArea();
 	}//getTextField()
 
+	
+	
 	/**
 	 * Possibilité d'ajout d'une ou plusieurs CheckBox
 	 * @param label
@@ -149,4 +193,28 @@ public class FormFX extends Parent {
 		return new ComboBox<String>();
 	}//getTextField()
 
+	
+	
+	/**
+	 * Possibilité d'ajout d'un champs DatePicker
+	 * @param name
+	 */
+	public void addDatePicker(String name) {
+		++nbElem;
+		Label label = new Label(name);
+		formLabels[nbElem] = label;
+		grid.add(label, 0, nbElem);
+
+		DatePicker datePicker = new DatePicker();
+		formElements[nbElem] = datePicker;
+		grid.add(datePicker, 1, nbElem);
+	}//addDatePicker()
+	
+	public DatePicker getDatePicker(String name) {
+		for(int i = 0; i <= nbElem; i++)
+			if (formLabels[i].getText().equals(name)) 
+				return (DatePicker) formElements[i];
+		return new DatePicker();
+	}//getTextField()
+	
 }//FormFX
