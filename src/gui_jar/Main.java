@@ -7,9 +7,11 @@ import javax.sound.midi.Sequence;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -24,8 +26,11 @@ public class Main extends Application{
 
         stage = new Stage();
         stage.setTitle("Hello Table");
-
-        final Group root = new Group();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("MainOverview.fxml"));
+        
+        GridPane root = new GridPane();
+        root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         tableView_fx t = new tableView_fx();
@@ -33,6 +38,7 @@ public class Main extends Application{
         ArrayList<Objets> myArr = new ArrayList<Objets>();
         myArr.add(new Objets("/img/voiture.png", "voiture", "bon état"));
         children.add(t.table(myArr));
+        
         stage.show();
         responsive.ResponsiveHandler.addResponsiveToWindow(stage);
 	}

@@ -58,6 +58,7 @@ public class tableView_fx  {
         table.getColumns().addAll(imagecol, nomcol, description);
         
 		table.setItems(data);
+		
 		return table;
        
     }
