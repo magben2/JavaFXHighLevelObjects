@@ -27,7 +27,7 @@ public class Main extends Application{
         stage = new Stage();
         stage.setTitle("Hello Table");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("MainOverview.fxml"));
+       loader.setLocation(Main.class.getResource("MainOverview.fxml"));
         
         GridPane root = new GridPane();
         root = loader.load();
@@ -36,11 +36,14 @@ public class Main extends Application{
         tableView_fx t = new tableView_fx();
         ObservableList<Node> children =root.getChildren();
         ArrayList<Objets> myArr = new ArrayList<Objets>();
-        myArr.add(new Objets("/img/voiture.png", "voiture", "bon état"));
-        children.add(t.table(myArr));
+        myArr.add(new Objets("voiture", "bon état",new Imagefx("voiture.jpeg")));
+        myArr.add(new Objets("banane", "bon état",new Imagefx("voiture.jpeg")));
+        ArrayList<Imagefx> myImg = new ArrayList<Imagefx>();
+        myImg.add(new Imagefx("voiture.jpeg"));
+        children.add(t.table(myArr,myImg));
         
         stage.show();
-        responsive.ResponsiveHandler.addResponsiveToWindow(stage);
+        
 	}
 
 

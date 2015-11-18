@@ -1,25 +1,20 @@
 package gui_jar;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+
 public class Objets {
-	    public final SimpleStringProperty image;
+
 	    public final SimpleStringProperty nom;
 	    public final SimpleStringProperty description;
-	 
-	   public Objets( String imagepath, String Lnom, String desc) {
-	        this.image = new SimpleStringProperty(imagepath);
+	    private final ObjectProperty imagefx= new SimpleObjectProperty();
+	   public Objets( String Lnom, String desc,Imagefx image ) {
+		   setImage(image);
 	        this.nom = new SimpleStringProperty(Lnom);
 	        this.description = new SimpleStringProperty(desc);
 	    }
-	   
-       public String getImage() {
-           return image.get();
-       }
-
-       public void setImage(String imagepath) {
-           image.set(imagepath);
-       }
 
        public String getNom() {
            return nom.get();
@@ -36,5 +31,14 @@ public class Objets {
        public void setDesc(String desc) {
            description.set(desc);
        }
+       public void setImage(Imagefx img){
+	        imagefx.set(img);
+	   }
+	   public Object getImage(){
+	       return imagefx.get();
+	   }
+	   public ObjectProperty imageProperty(){
+	        return imagefx;
+	   }
    
 }
