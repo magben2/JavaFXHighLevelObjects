@@ -26,7 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
  
 public class TableViewFx extends Application {
- 
+	
+
  public static void main(String[] args) {
   Application.launch(args);
  }
@@ -53,9 +54,12 @@ public class TableViewFx extends Application {
      new MyDomain(new ImageFx("voiture.jpeg"),"Orange","This is also a fruit."),
      new MyDomain(new ImageFx("voiture.jpeg"),"Brown","This is a vegetable.")
      );
-   
   CustomTableView<MyDomain> table = new CustomTableView<MyDomain>();
-   
+  table.addImageColumn("Image");
+  table.addTextColumn("nom");
+  table.addTextColumn("text");
+
+  /*
   CustomTableColumn<MyDomain,ImageFx> imageColumn = new CustomTableColumn<MyDomain,ImageFx>("Image");
   imageColumn.setPercentWidth(25);
   imageColumn.setCellValueFactory(new PropertyValueFactory<MyDomain,ImageFx>("image"));
@@ -95,13 +99,15 @@ public class TableViewFx extends Application {
   CustomTableColumn<MyDomain,String> descCol = new CustomTableColumn<MyDomain,String>("Description");
   descCol.setPercentWidth(55);
   descCol.setCellValueFactory(new PropertyValueFactory<MyDomain,String>("description"));
-   
+  
   table.getTableView().getColumns().addAll(imageColumn,titleColumn,descCol);
+  */
   table.getTableView().setItems(data);
   root.getChildren().add(table);
  }
- 
- 
+ /**
+  * add table column
+  */
  
  /**
   * CustomTableView to hold the table and grid.
@@ -147,7 +153,46 @@ public class TableViewFx extends Application {
    });
    getChildren().addAll(grid,table);
   }
-   
+  public void addTextColumn(String nom) {
+		 CustomTableColumn<MyDomain,String> titleColumn  = new CustomTableColumn<MyDomain,String>(nom);
+		 titleColumn.setPercentWidth(20);
+		 titleColumn.setCellValueFactory(new PropertyValueFactory<MyDomain,String>(nom));
+		 table.getColumns().add((TableColumn<s, ?>) titleColumn);
+  }
+  public void addImageColumn(String nom) {
+	 CustomTableColumn<MyDomain,ImageFx> imageColumn = new CustomTableColumn<MyDomain,ImageFx>(nom);
+	  imageColumn.setPercentWidth(25);
+	  imageColumn.setCellValueFactory(new PropertyValueFactory<MyDomain,ImageFx>(nom));
+	  
+	  imageColumn.setCellFactory(new Callback<TableColumn<MyDomain, ImageFx>, TableCell<MyDomain, ImageFx>>() {
+
+	  	
+	      @Override
+	      public TableCell<MyDomain, ImageFx> call(TableColumn<MyDomain, ImageFx> param) {
+
+	          TableCell<MyDomain, ImageFx> cell = new TableCell<MyDomain, ImageFx>() {
+	          	@Override
+	          public void updateItem( ImageFx objet,boolean empty) {
+	          	
+	                  if     (objet != null) {
+	                  VBox vb = new VBox();
+	                  ImageView imv = new ImageView(new Image(MyDomain.class.getResource("img").toString()+"/"+objet.getImage()));
+	              	
+	              	imv.setFitHeight(50);
+	              	imv.setFitWidth(50);
+	              	vb.setAlignment(Pos.CENTER);
+	              	vb.getChildren().add(imv);
+	              	setGraphic(vb);
+	              }
+	         }
+	      };
+	          
+	      return cell;
+	      
+		  }
+		});
+	  this.table.getColumns().add((TableColumn<s, ?>) imageColumn);
+}
   public TableView<s> getTableView(){
    return this.table;
   }
