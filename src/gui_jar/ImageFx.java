@@ -2,12 +2,12 @@ package gui_jar;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Imagefx {
+public class ImageFx {
 
 	    public String image;
 
 	 
-	   public Imagefx( String imagepath) {
+	   public ImageFx( String imagepath) {
 	        this.image = imagepath;
 	     
 	    }

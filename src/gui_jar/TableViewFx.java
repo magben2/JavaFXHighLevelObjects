@@ -49,26 +49,26 @@ public class TableViewFx extends Application {
  private void configureTable(StackPane root) {
    
   final ObservableList<MyDomain> data = FXCollections.observableArrayList(
-     new MyDomain(new Imagefx("voiture.jpeg"),"Red","This is a fruit."),
-     new MyDomain(new Imagefx("voiture.jpeg"),"Orange","This is also a fruit."),
-     new MyDomain(new Imagefx("voiture.jpeg"),"Brown","This is a vegetable.")
+     new MyDomain(new ImageFx("voiture.jpeg"),"Red","This is a fruit."),
+     new MyDomain(new ImageFx("voiture.jpeg"),"Orange","This is also a fruit."),
+     new MyDomain(new ImageFx("voiture.jpeg"),"Brown","This is a vegetable.")
      );
    
   CustomTableView<MyDomain> table = new CustomTableView<MyDomain>();
    
-  CustomTableColumn<MyDomain,Imagefx> imageColumn = new CustomTableColumn<MyDomain,Imagefx>("Image");
+  CustomTableColumn<MyDomain,ImageFx> imageColumn = new CustomTableColumn<MyDomain,ImageFx>("Image");
   imageColumn.setPercentWidth(25);
-  imageColumn.setCellValueFactory(new PropertyValueFactory<MyDomain,Imagefx>("image"));
+  imageColumn.setCellValueFactory(new PropertyValueFactory<MyDomain,ImageFx>("image"));
   
-  imageColumn.setCellFactory(new Callback<TableColumn<MyDomain, Imagefx>, TableCell<MyDomain, Imagefx>>() {
+  imageColumn.setCellFactory(new Callback<TableColumn<MyDomain, ImageFx>, TableCell<MyDomain, ImageFx>>() {
 
   	
       @Override
-      public TableCell<MyDomain, Imagefx> call(TableColumn<MyDomain, Imagefx> param) {
+      public TableCell<MyDomain, ImageFx> call(TableColumn<MyDomain, ImageFx> param) {
 
-          TableCell<MyDomain, Imagefx> cell = new TableCell<MyDomain, Imagefx>() {
+          TableCell<MyDomain, ImageFx> cell = new TableCell<MyDomain, ImageFx>() {
           	@Override
-          	public void updateItem( Imagefx objet,boolean empty) {
+          	public void updateItem( ImageFx objet,boolean empty) {
           	
                   if     (objet != null) {
                   VBox vb = new VBox();
@@ -184,7 +184,7 @@ public class TableViewFx extends Application {
   private SimpleStringProperty description = new SimpleStringProperty();
   private ObjectProperty imagefx= new SimpleObjectProperty();
  
-  public MyDomain(Imagefx img, String desc,String color){
+  public MyDomain(ImageFx img, String desc,String color){
    this.imagefx.set(img);
    this.name.set(desc);
    this.description.set(color);
@@ -206,7 +206,7 @@ public class TableViewFx extends Application {
       return name;
   }
      
-  public void setImage(Imagefx img){
+  public void setImage(ImageFx img){
 	imagefx.set(img);
  }
  public Object getImage(){

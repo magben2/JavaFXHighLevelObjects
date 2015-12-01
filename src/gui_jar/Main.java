@@ -40,10 +40,10 @@ public class Main extends Application{
         
         ObservableList<Node> children =root.getChildren();
         ArrayList<Objets> myArr = new ArrayList<Objets>();
-        myArr.add(new Objets("voiture", "bon état",new Imagefx("voiture.jpeg")));
-        myArr.add(new Objets("banane", "bon état",new Imagefx("voiture.jpeg")));
-        ArrayList<Imagefx> myImg = new ArrayList<Imagefx>();
-        myImg.add(new Imagefx("voiture.jpeg"));
+        myArr.add(new Objets("voiture", "bon état",new ImageFx("voiture.jpeg")));
+        myArr.add(new Objets("banane", "bon état",new ImageFx("voiture.jpeg")));
+        ArrayList<ImageFx> myImg = new ArrayList<ImageFx>();
+        myImg.add(new ImageFx("voiture.jpeg"));
         children.add(t.table(myArr,myImg));
         
         stage.show();

@@ -10,7 +10,7 @@ public class Objets {
 	    public final SimpleStringProperty nom;
 	    public final SimpleStringProperty description;
 	    private final ObjectProperty imagefx= new SimpleObjectProperty();
-	   public Objets( String Lnom, String desc,Imagefx image ) {
+	   public Objets( String Lnom, String desc,ImageFx image ) {
 		   setImage(image);
 	        this.nom = new SimpleStringProperty(Lnom);
 	        this.description = new SimpleStringProperty(desc);
@@ -31,7 +31,7 @@ public class Objets {
        public void setDesc(String desc) {
            description.set(desc);
        }
-       public void setImage(Imagefx img){
+       public void setImage(ImageFx img){
 	        imagefx.set(img);
 	   }
 	   public Object getImage(){
