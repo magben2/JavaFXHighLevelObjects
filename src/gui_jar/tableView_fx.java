@@ -18,7 +18,12 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
  
 public class tableView_fx  {
-			
+	
+	public Node tableView_fx() {
+		return null;
+		
+	}
+	
 	public Node table(ArrayList listobjets,ArrayList listimages) {
     	TableView<Objets> table = new TableView<Objets>();
     	ObservableList<Objets> data = FXCollections.observableArrayList(listobjets);
@@ -64,7 +69,7 @@ public class tableView_fx  {
         description.setCellValueFactory(
                 new PropertyValueFactory<Objets, String>("desc"));
         
-        table.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.getColumns().addAll(imagecol, nomcol, description);
         
 		table.setItems(data);
