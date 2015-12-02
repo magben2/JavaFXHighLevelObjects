@@ -1,4 +1,4 @@
-package gui_jar;
+package application;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,10 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
-public class MenuBarFX {
+public class MyMenuBar {
 	private MenuBar menuBar;
 	private TreeView<String> tree;
-	public ImageView image = new ImageView(new Image(MenuBarFX.class.getResource("menu.png").toString()));
+	public ImageView image = new ImageView(new Image(MyMenuBar.class.getResource("menu.png").toString()));
 	public BorderPane root;
 	public Scene scene;
 	public Button button = new Button();
@@ -31,7 +31,7 @@ public class MenuBarFX {
 	 * @param scene
 	 * @param listeNomMenu
 	 */
-	public MenuBarFX(BorderPane root, Scene scene, String[] listeNomMenu){
+	public MyMenuBar(BorderPane root, Scene scene, String[] listeNomMenu){
 		this.root=root;
 		this.scene=scene;
 
@@ -64,9 +64,10 @@ public class MenuBarFX {
 			}
 		});
 
-		//Gestion de la "responsivite"
+		//Gestion de la "responsivite sans resizeMe()"
+		/*
 		scene.widthProperty().addListener((observable, oldValue, newValue) -> {
-			if(newValue.intValue()>600){
+			if(newValue.intValue()>480){
 				tree.setVisible(false);
 				button.setVisible(false);
 				root.setTop(menuBar);
@@ -77,6 +78,7 @@ public class MenuBarFX {
 			}
 
 		});
+		*/
 
 
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -114,6 +116,20 @@ public class MenuBarFX {
 			subItem[menuPosition][i]=new TreeItem(listeNomMenuItem[i]);
 			item[menuPosition].getChildren().add(subItem[menuPosition][i]);
 		}
+	}
+	
+	public void resizeMe(double width){
+			if(480<width){
+				tree.setVisible(false);
+				button.setVisible(false);
+				root.setTop(menuBar);
+			}
+			else{
+				root.setTop(button);
+				button.setVisible(true);
+			}
+
+		
 	}
 }
 
