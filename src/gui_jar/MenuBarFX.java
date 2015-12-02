@@ -13,10 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
-public class MyMenuBar {
+public class MenuBarFX {
 	private MenuBar menuBar;
 	private TreeView<String> tree;
-	public ImageView image = new ImageView(new Image(MyMenuBar.class.getResource("menu.png").toString()));
+	public ImageView image = new ImageView(new Image(MenuBarFX.class.getResource("menu.png").toString()));
 	public BorderPane root;
 	public Scene scene;
 	public Button button = new Button();
@@ -31,7 +31,7 @@ public class MyMenuBar {
 	 * @param scene
 	 * @param listeNomMenu
 	 */
-	public MyMenuBar(BorderPane root, Scene scene, String[] listeNomMenu){
+	public MenuBarFX(BorderPane root, Scene scene, String[] listeNomMenu){
 		this.root=root;
 		this.scene=scene;
 
